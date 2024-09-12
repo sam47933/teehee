@@ -2,9 +2,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     controller.moveSprite(mySprite, 250, 250)
 })
 let mySprite: Sprite = null
-let myEnemy: Sprite = null
-myEnemy.follow(mySprite)
-myEnemy = sprites.create(img`
+let myEnemy = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
