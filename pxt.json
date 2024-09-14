@@ -1,8 +1,15 @@
 {
-    "name": "teehee",
+    "name": "chase the doughnut",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "settings-blocks": "github:microsoft/pxt-settings-blocks#v1.0.0",
+        "multiplayer": "*",
+        "seesaw": "github:adafruit/pxt-seesaw#v0.0.19",
+        "controller": "*",
+        "feather": "*",
+        "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.2",
+        "animation": "*"
     },
     "files": [
         "main.blocks",
