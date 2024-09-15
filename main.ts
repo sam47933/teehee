@@ -3,13 +3,18 @@ info.player1.onScore(15, function () {
     music.play(music.melodyPlayable(music.powerDown), music.PlaybackMode.UntilDone)
     game.reset()
 })
+info.onCountdownEnd(function () {
+    sprites.destroy(mySprite)
+    game.gameOver(true)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.UntilDone)
     info.changeScoreBy(1)
     pause(1000)
 })
+let mySprite: Sprite = null
 scene.setBackgroundColor(10)
-let mySprite = sprites.create(img`
+mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -87,3 +92,4 @@ mySprite,
 500,
 true
 )
+info.startCountdown(60)
