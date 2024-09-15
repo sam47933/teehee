@@ -1,5 +1,6 @@
 info.player1.onScore(15, function () {
     game.gameOver(false)
+    music.play(music.melodyPlayable(music.powerDown), music.PlaybackMode.UntilDone)
     game.reset()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
@@ -7,7 +8,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     info.changeScoreBy(1)
     pause(1000)
 })
-scene.setBackgroundColor(12)
+scene.setBackgroundColor(10)
 let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -32,21 +33,20 @@ let mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
+    . . . . . 3 3 1 . . . . . . . . 
+    . . . . 3 3 3 3 1 . . . . . . . 
+    . . . . 3 3 . 3 3 . . . . . . . 
+    . . . . 1 3 3 3 3 . . . . . . . 
+    . . . . . 1 3 3 . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . 3 3 3 d . . . . . . . 
-    . . . . 3 3 3 3 3 d . . . . . . 
-    . . . . 3 3 . . 3 3 . . . . . . 
-    . . . . 3 3 . . 3 3 . . . . . . 
-    . . . . d 3 3 3 3 3 . . . . . . 
-    . . . . . d 3 3 3 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
-controller.moveSprite(mySprite2, 120, 120)
-pause(1000)
 mySprite.follow(mySprite2)
+controller.moveSprite(mySprite2, 115, 115)
 animation.runImageAnimation(
 mySprite,
 [img`
