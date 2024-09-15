@@ -1,5 +1,5 @@
 info.player1.onScore(15, function () {
-    game.gameOver(true)
+    game.gameOver(false)
     game.reset()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
@@ -26,26 +26,27 @@ let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-controller.moveSprite(mySprite, 150, 150)
-mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
+let mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . d 3 3 3 . . . . . . . 
-    . . . . d 3 3 3 3 3 . . . . . . 
-    . . . . 3 3 . . 3 3 . . . . . . 
-    . . . . 3 3 . . 3 3 . . . . . . 
-    . . . . 3 3 3 3 3 d . . . . . . 
+    . . . . . . . . . . . . . . . . 
     . . . . . 3 3 3 d . . . . . . . 
+    . . . . 3 3 3 3 3 d . . . . . . 
+    . . . . 3 3 . . 3 3 . . . . . . 
+    . . . . 3 3 . . 3 3 . . . . . . 
+    . . . . d 3 3 3 3 3 . . . . . . 
+    . . . . . d 3 3 3 . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Food))
-mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 155, 155)
+    `, SpriteKind.Food)
+controller.moveSprite(mySprite2, 120, 120)
+pause(1000)
+mySprite.follow(mySprite2)
 animation.runImageAnimation(
 mySprite,
 [img`
