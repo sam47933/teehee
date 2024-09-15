@@ -2,16 +2,13 @@ info.player1.onScore(15, function () {
     game.gameOver(true)
     game.reset()
 })
-info.onCountdownEnd(function () {
-    sprites.destroy(mySprite)
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.UntilDone)
     info.changeScoreBy(1)
     pause(1000)
 })
-let mySprite: Sprite = null
-scene.setBackgroundColor(6)
-mySprite = sprites.create(img`
+scene.setBackgroundColor(12)
+let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -57,29 +54,12 @@ mySprite,
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . f . . f . . . . . . . . 
-    . . . . f . . f . . . . . . . . 
-    . . . . f . . f . . . . . . . . 
-    . . . . f . . f . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . f f . . . . . . . . . 
-    . . . . f . . f . . . . . . . . 
-    . . . . f . . f . . . . . . . . 
-    . . . . . f f . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `,img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . f . . f . . . . . . . . 
     . . . . f . . f . . . . . . . . 
     . . . . f . . f . . . . . . . . 
     . . . . f . . f . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . f f . . . . . . . . . 
+    . . . . f . . f . . . . . . . . 
     . . . . f . . f . . . . . . . . 
     . . . . . f f . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -90,13 +70,13 @@ mySprite,
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . f . . . f . . . . . . . . 
-    . . . f . . . f . . . . . . . . 
-    . . . f . . . f . . . . . . . . 
-    . . . f . . . f . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . f f f f f . . . . . . . . 
     . . . . . . . . . . . . . . . . 
+    . . . . . f . . f . . . . . . . 
+    . . . . . f . . f . . . . . . . 
+    . . . . . f . . f . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . f f f f . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -106,5 +86,3 @@ mySprite,
 500,
 true
 )
-info.startCountdown(120)
-info.changeCountdownBy(-1)
