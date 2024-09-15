@@ -51,7 +51,7 @@ let mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
 mySprite.follow(mySprite2)
-controller.moveSprite(mySprite2, 115, 115)
+controller.moveSprite(mySprite2, 110, 110)
 animation.runImageAnimation(
 mySprite,
 [img`
