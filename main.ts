@@ -1,20 +1,14 @@
 info.player1.onScore(15, function () {
-    game.gameOver(false)
-    music.play(music.melodyPlayable(music.powerDown), music.PlaybackMode.UntilDone)
-    game.reset()
-})
-info.onCountdownEnd(function () {
-    sprites.destroy(mySprite)
     game.gameOver(true)
+    game.reset()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.UntilDone)
     info.changeScoreBy(1)
     pause(1000)
 })
-let mySprite: Sprite = null
-scene.setBackgroundColor(10)
-mySprite = sprites.create(img`
+scene.setBackgroundColor(12)
+let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -32,26 +26,26 @@ mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-let mySprite2 = sprites.create(img`
+controller.moveSprite(mySprite, 150, 150)
+mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . 3 3 1 . . . . . . . . 
-    . . . . 3 3 3 3 1 . . . . . . . 
-    . . . . 3 3 . 3 3 . . . . . . . 
-    . . . . 1 3 3 3 3 . . . . . . . 
-    . . . . . 1 3 3 . . . . . . . . 
+    . . . . . d 3 3 3 . . . . . . . 
+    . . . . d 3 3 3 3 3 . . . . . . 
+    . . . . 3 3 . . 3 3 . . . . . . 
+    . . . . 3 3 . . 3 3 . . . . . . 
+    . . . . 3 3 3 3 3 d . . . . . . 
+    . . . . . 3 3 3 d . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Food)
-mySprite.follow(mySprite2)
-controller.moveSprite(mySprite2, 110, 110)
+    `, SpriteKind.Food))
+mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 155, 155)
 animation.runImageAnimation(
 mySprite,
 [img`
@@ -92,13 +86,3 @@ mySprite,
 500,
 true
 )
-MakeyMakey.setSimulatorKeymap(
-MakeyMakey.PlayerNumber.ONE,
-MakeyMakey.MakeyMakeyKey.UP,
-MakeyMakey.MakeyMakeyKey.DOWN,
-MakeyMakey.MakeyMakeyKey.LEFT,
-MakeyMakey.MakeyMakeyKey.RIGHT,
-MakeyMakey.MakeyMakeyKey.LEFT_CLICK,
-MakeyMakey.MakeyMakeyKey.RIGHT_CLICK
-)
-info.startCountdown(60)
