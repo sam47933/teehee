@@ -1,14 +1,18 @@
-info.player1.onScore(15, function () {
-    game.gameOver(false)
-    game.reset()
+info.onCountdownEnd(function () {
+    sprites.destroy(mySprite)
+    game.gameOver(true)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.UntilDone)
     info.changeScoreBy(1)
     pause(1000)
 })
+info.player1.onScore(20, function () {
+    game.gameOver(true)
+})
+let mySprite: Sprite = null
 scene.setBackgroundColor(12)
-let mySprite = sprites.create(img`
+mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -26,27 +30,45 @@ let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-let mySprite2 = sprites.create(img`
+controller.moveSprite(mySprite)
+mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . 3 3 3 d . . . . . . . 
-    . . . . 3 3 3 3 3 d . . . . . . 
-    . . . . 3 3 . . 3 3 . . . . . . 
-    . . . . 3 3 . . 3 3 . . . . . . 
-    . . . . d 3 3 3 3 3 . . . . . . 
     . . . . . d 3 3 3 . . . . . . . 
+    . . . . d 3 3 3 3 3 . . . . . . 
+    . . . . 3 3 . . 3 3 . . . . . . 
+    . . . . 3 3 . . 3 3 . . . . . . 
+    . . . . 3 3 3 3 3 d . . . . . . 
+    . . . . . 3 3 3 d . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Food)
-controller.moveSprite(mySprite2, 120, 120)
-pause(1000)
-mySprite.follow(mySprite2)
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food))
+mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three), sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . d 3 3 3 . . . . . . . 
+    . . . . d 3 3 3 3 3 . . . . . . 
+    . . . . 3 3 . . 3 3 . . . . . . 
+    . . . . 3 3 . . 3 3 . . . . . . 
+    . . . . 3 3 3 3 3 d . . . . . . 
+    . . . . . 3 3 3 d . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food))
+mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two))
+mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Three))
 animation.runImageAnimation(
 mySprite,
 [img`
@@ -87,3 +109,4 @@ mySprite,
 500,
 true
 )
+info.startCountdown(60)
