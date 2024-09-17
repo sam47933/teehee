@@ -1,6 +1,6 @@
 {
     "name": "chase the doughnut",
-    "version": "1.2.3",
+    "version": "1.0.0",
     "description": "",
     "dependencies": {
         "device": "*",
@@ -10,8 +10,7 @@
         "controller": "*",
         "feather": "*",
         "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.2",
-        "animation": "*",
-        "Makey Makey Keymappings": "github:joylabz/makeymakey-makecode-arcade-extension#1.0.3"
+        "animation": "*"
     },
     "files": [
         "main.blocks",
@@ -32,5 +31,5 @@
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj"
 }

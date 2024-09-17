@@ -1,20 +1,14 @@
 info.player1.onScore(15, function () {
     game.gameOver(false)
-    music.play(music.melodyPlayable(music.powerDown), music.PlaybackMode.UntilDone)
     game.reset()
-})
-info.onCountdownEnd(function () {
-    sprites.destroy(mySprite)
-    game.gameOver(true)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.UntilDone)
     info.changeScoreBy(1)
     pause(1000)
 })
-let mySprite: Sprite = null
-scene.setBackgroundColor(10)
-mySprite = sprites.create(img`
+scene.setBackgroundColor(12)
+let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -38,20 +32,21 @@ let mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . 3 3 1 . . . . . . . . 
-    . . . . 3 3 3 3 1 . . . . . . . 
-    . . . . 3 3 . 3 3 . . . . . . . 
-    . . . . 1 3 3 3 3 . . . . . . . 
-    . . . . . 1 3 3 . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
+    . . . . . 3 3 3 d . . . . . . . 
+    . . . . 3 3 3 3 3 d . . . . . . 
+    . . . . 3 3 . . 3 3 . . . . . . 
+    . . . . 3 3 . . 3 3 . . . . . . 
+    . . . . d 3 3 3 3 3 . . . . . . 
+    . . . . . d 3 3 3 . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
+controller.moveSprite(mySprite2, 120, 120)
+pause(1000)
 mySprite.follow(mySprite2)
-controller.moveSprite(mySprite2, 110, 110)
 animation.runImageAnimation(
 mySprite,
 [img`
@@ -92,13 +87,3 @@ mySprite,
 500,
 true
 )
-MakeyMakey.setSimulatorKeymap(
-MakeyMakey.PlayerNumber.ONE,
-MakeyMakey.MakeyMakeyKey.UP,
-MakeyMakey.MakeyMakeyKey.DOWN,
-MakeyMakey.MakeyMakeyKey.LEFT,
-MakeyMakey.MakeyMakeyKey.RIGHT,
-MakeyMakey.MakeyMakeyKey.LEFT_CLICK,
-MakeyMakey.MakeyMakeyKey.RIGHT_CLICK
-)
-info.startCountdown(60)
