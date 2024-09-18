@@ -110,4 +110,3 @@ mySprite,
 true
 )
 info.startCountdown(60)
-MakeyMakey.setSimulatorKeymap(MakeyMakey.PlayerNumber.ONE, MakeyMakey.MakeyMakeyKey.UP, MakeyMakey.MakeyMakeyKey.RIGHT, MakeyMakey.MakeyMakeyKey.LEFT, MakeyMakey.MakeyMakeyKey.DOWN, MakeyMakey.MakeyMakeyKey.A, MakeyMakey.MakeyMakeyKey.B)
